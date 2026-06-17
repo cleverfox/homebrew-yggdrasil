@@ -1,8 +1,8 @@
 class YggdrasilNg < Formula
   desc "Yggdrasil mesh networking daemon (Rust port)"
   homepage "https://github.com/cleverfox/yggdrasil-ng"
-  url "https://github.com/cleverfox/yggdrasil-ng/archive/refs/tags/v0.1.6.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  url "https://github.com/cleverfox/yggdrasil-ng/archive/refs/tags/v0.1.6-cf.tar.gz"
+  sha256 "5e82eda034b31f0b7bc3138c1c479ba8c485e23e47037ccf86b5c7e9c4803c88"
   license "MPL-2.0"
   head "https://github.com/cleverfox/yggdrasil-ng.git", branch: "cf/transportsv2"
 

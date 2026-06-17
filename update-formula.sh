@@ -16,10 +16,11 @@ trap 'rm -f "$TMP"' EXIT
 curl -fSL "$URL" -o "$TMP"
 SHA="$(shasum -a 256 "$TMP" | awk '{print $1}')"
 
-# Stable url is the only "archive/refs/tags/vX.tar.gz" line; HEAD uses .git.
-# sha256 appears exactly once (HEAD has no checksum).
-sed -i '' -E "s#archive/refs/tags/v[0-9][0-9.]*\.tar\.gz#archive/refs/tags/v${VERSION}.tar.gz#" "$FORMULA"
-sed -i '' -E "s#sha256 \"[0-9a-f]{0,64}\"#sha256 \"${SHA}\"#" "$FORMULA"
+# Replace the stable `url "..."` line (head uses `head "..."`, so it's safe to
+# anchor on `url "`). sha256 appears exactly once (HEAD has no checksum).
+# Line-anchored so any tag format works, including suffixes like -cf.
+sed -i '' -E "s#^  url \".*\"#  url \"${URL}\"#" "$FORMULA"
+sed -i '' -E "s#^  sha256 \".*\"#  sha256 \"${SHA}\"#" "$FORMULA"
 
 echo "Updated $FORMULA"
 echo "  version: $VERSION"
