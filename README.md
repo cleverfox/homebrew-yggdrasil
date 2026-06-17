@@ -7,6 +7,7 @@ the Rust port of the Yggdrasil mesh networking daemon.
 
 ```sh
 brew tap cleverfox/yggdrasil
+brew trust cleverfox/yggdrasil    # Homebrew requires trusting any 3rd-party tap
 brew install yggdrasil-ng
 ```
 
