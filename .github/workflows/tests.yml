@@ -1,0 +1,29 @@
+name: brew test-bot
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test-bot:
+    strategy:
+      matrix:
+        os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Checkout tap
+        uses: actions/checkout@v4
+
+      - run: brew test-bot --only-cleanup-before
+
+      - run: brew test-bot --only-setup
+
+      - run: brew test-bot --only-tap-syntax
+
+      - run: brew test-bot --only-formulae
+        if: github.event_name == 'pull_request'

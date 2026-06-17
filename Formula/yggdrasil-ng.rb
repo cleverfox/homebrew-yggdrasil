@@ -4,7 +4,7 @@ class YggdrasilNg < Formula
   url "https://github.com/cleverfox/yggdrasil-ng/archive/refs/tags/v0.1.6.tar.gz"
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   license "MPL-2.0"
-  head "https://github.com/cleverfox/yggdrasil-ng.git", branch: "master"
+  head "https://github.com/cleverfox/yggdrasil-ng.git", branch: "cf/transportsv2"
 
   depends_on "rust" => :build
 
