@@ -1,16 +1,16 @@
 class YggdrasilNg < Formula
   desc "Yggdrasil mesh networking daemon (Rust port)"
   homepage "https://github.com/cleverfox/yggdrasil-ng"
-  url "https://github.com/cleverfox/yggdrasil-ng/archive/refs/tags/v0.1.6-cf.tar.gz"
-  sha256 "5e82eda034b31f0b7bc3138c1c479ba8c485e23e47037ccf86b5c7e9c4803c88"
+  url "https://github.com/cleverfox/yggdrasil-ng/archive/refs/tags/v0.3.2-cf.tar.gz"
+  sha256 "b5aef32dfbaf9c9a065b82e78495cfd5ccdb28309b33a84a54d7b38897a58feb"
   license "MPL-2.0"
-  head "https://github.com/cleverfox/yggdrasil-ng.git", branch: "cf/transportsv2"
+  head "https://github.com/cleverfox/yggdrasil-ng.git", branch: "master"
 
   depends_on "rust" => :build
 
-  # Installs a `yggdrasil` binary, so it cannot coexist with the classic (Go)
-  # yggdrasil from homebrew-core. Installing either blocks the other.
-  conflicts_with "yggdrasil", because: "both install a `yggdrasil` binary"
+  # Installs a `yggdrasil` binary. The classic (Go) yggdrasil is no longer a
+  # homebrew-core formula (only a .pkg cask installing into /usr/local/bin),
+  # and formulae cannot declare conflicts with casks — see README/caveats.
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/yggdrasil")

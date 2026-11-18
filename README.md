@@ -11,12 +11,14 @@ brew trust cleverfox/yggdrasil    # Homebrew requires trusting any 3rd-party tap
 brew install yggdrasil-ng
 ```
 
-This installs the `yggdrasil` binary (so `yggdrasil getPeers` works). It
-**conflicts with** the classic (Go) `yggdrasil` from homebrew-core — installing
-one blocks the other. If you have classic yggdrasil, remove it first:
+This installs the `yggdrasil` binary (so `yggdrasil getPeers` works). Do not
+run it alongside the classic (Go) yggdrasil — installed from the official
+`.pkg` or the (now disabled) `yggdrasil` cask into `/usr/local/bin`. Both
+want the same TUN/ports and the same command name. Remove classic first:
 
 ```sh
-brew uninstall yggdrasil
+brew uninstall --cask yggdrasil   # if installed via the cask
+# or, for the official .pkg, stop its LaunchDaemon and delete /usr/local/bin/yggdrasil{,ctl}
 ```
 
 ### Run it as a service (autostart + restart)
